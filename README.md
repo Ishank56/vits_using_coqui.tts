@@ -22,7 +22,7 @@ To train the TTS model for Hindi language, run the `train_tts.py` file. This fil
 
 ```python
 nvidia-smi   #to check the GPUS available
-CUDA_VISIBLE_DEVICES="5" python train_tts.py  #Mention the GPU to run on and the training file
+CUDA_VISIBLE_DEVICES="5" python train.py  #Mention the GPU to run on and the training file
 ```
 
 ## Inference
@@ -34,6 +34,11 @@ tts --text "यह अपनत्व और उत्कर्ष गुलज�
     --model_path path/to/model.pth \
     --config_path path/to/config.json \
     --out_path folder/to/save/output.wav
+```
+or 
+```python
+python testing.py
+
 ```
 ## Contributing
 I made the project working and it is generating good synthesised output. Contributions to this project are welcome! If you have any improvements or suggestions, feel free to open an issue or submit a pull request.
