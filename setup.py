@@ -33,32 +33,27 @@ from setuptools import Extension, find_packages, setup
 
 python_version = sys.version.split()[0]
 if Version(python_version) < Version("3.9") or Version(python_version) >= Version("3.12"):
-    raise RuntimeError("TTS requires python >= 3.9 and < 3.12 " "but your Python version is {}".format(sys.version))
-
+    raise RuntimeError("TTS requires python >= 3.9 and < 3.12 but your Python version is {}".format(sys.version))
 
 cwd = os.path.dirname(os.path.abspath(__file__))
 with open(os.path.join(cwd, "TTS", "VERSION")) as fin:
     version = fin.read().strip()
 
-
 class build_py(setuptools.command.build_py.build_py):  # pylint: disable=too-many-ancestors
     def run(self):
         setuptools.command.build_py.build_py.run(self)
-
 
 class develop(setuptools.command.develop.develop):
     def run(self):
         setuptools.command.develop.develop.run(self)
 
-
 # The documentation for this feature is in server/README.md
 package_data = ["TTS/server/templates/*"]
-
 
 def pip_install(package_name):
     subprocess.call([sys.executable, "-m", "pip", "install", package_name])
 
-
+# Load requirements
 requirements = open(os.path.join(cwd, "requirements.txt"), "r").readlines()
 with open(os.path.join(cwd, "requirements.notebooks.txt"), "r") as f:
     requirements_notebooks = f.readlines()
@@ -66,17 +61,20 @@ with open(os.path.join(cwd, "requirements.dev.txt"), "r") as f:
     requirements_dev = f.readlines()
 with open(os.path.join(cwd, "requirements.ja.txt"), "r") as f:
     requirements_ja = f.readlines()
+
 requirements_all = requirements_dev + requirements_notebooks + requirements_ja
 
-with open("README.md", "r", encoding="utf-8") as readme_file:
+# Load README.md with specified encoding
+with open(os.path.join(cwd, "README.md"), "r", encoding="utf-8") as readme_file:
     README = readme_file.read()
 
 exts = [
     Extension(
         name="TTS.tts.utils.monotonic_align.core",
-        sources=["TTS/tts/utils/monotonic_align/core.pyx"],
+        sources=["TTS/tts/utils/monotonic_align/core.c"],
     )
 ]
+
 setup(
     name="TTS",
     version=version,
@@ -87,11 +85,11 @@ setup(
     long_description=README,
     long_description_content_type="text/markdown",
     license="MPL-2.0",
-    # cython
     include_dirs=numpy.get_include(),
-    ext_modules=cythonize(exts, language_level=3),
-    # ext_modules=find_cython_extensions(),
-    # package
+    ext_modules=cythonize(
+        exts, 
+        compiler_directives={'language_level': "3"}  # or "2" or "3str"
+    ),
     include_package_data=True,
     packages=find_packages(include=["TTS"], exclude=["*.tests", "*tests.*", "tests.*", "*tests", "tests"]),
     package_data={
@@ -108,7 +106,6 @@ setup(
     cmdclass={
         "build_py": build_py,
         "develop": develop,
-        # 'build_ext': build_ext
     },
     install_requires=requirements,
     extras_require={
@@ -118,7 +115,7 @@ setup(
         "ja": requirements_ja,
     },
     python_requires=">=3.9.0, <3.12",
-    entry_points={"console_scripts": ["tts=TTS.bin.synthesize:main", "tts-server = TTS.server.server:main"]},
+    entry_points={"console_scripts": ["tts=TTS.bin.synthesize:main", "tts-server=TTS.server.server:main"]},
     classifiers=[
         "Programming Language :: Python",
         "Programming Language :: Python :: 3",

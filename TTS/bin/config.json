@@ -1,0 +1,62 @@
+{
+    "model": "vits",
+    "batch_size": 48,
+    "eval_batch_size": 16,
+    "num_loader_workers": 4,
+    "num_eval_loader_workers": 4,
+    "run_eval": true,
+    "test_delay_epochs": -1,
+    "epochs": 5,
+    "text_cleaner": "basic_cleaners",
+    "use_phonemes": true,
+    "phoneme_language": "hindi",
+    "phoneme_cache_path": "phoneme_cache",
+    "print_step": 25,
+    "print_eval": true,
+    "mixed_precision": false,
+    "max_seq_len": 500000,
+    "output_path": "D:/output2",
+    "test_sentences": [
+        "मेरे प्यारे देशवासियो",
+        "आपके परिवार के सदस्य के रूप में उपस्थित हूँ।"
+    ],
+    "datasets": [
+        {
+            "formatter": "ljspeech",
+            "meta_file_train": "transcription.txt",
+            "path": "D:/Hindi_test/test"
+        }
+    ],
+    "characters": {
+        "characters_class": "TTS.tts.models.vits.VitsCharacters",
+        "vocab_dict": null,
+        "pad": "_",
+        "eos": "",
+        "bos": "",
+        "blank": " ",
+        "characters": "अआइईउऊऍएऐऑओऔकखगघचछजझटठडढणतथदधनपफबभमयरलवशषसह़ािीुूृेैॉोौ्ज़ड़ढ़फ़।–‘’“”!",
+        "punctuations": ",.:;'‘’“”()!?ँंः।",
+        "phonemes": null,
+        "is_unique": true,
+        "is_sorted": true
+    },
+    "audio": {
+        "sample_rate": 32000,
+        "bit_depth": 16,
+        "channels": 1,
+        "duration": 5.0
+    },
+    "training": {
+        "learning_rate": 0.001,
+        "lr_schedule": "exponential",
+        "weight_decay": 0.0001,
+        "clip_grad_norm": 1.0,
+        "optimizer": "adam"
+    },
+    "logging": {
+        "log_dir": "D:/log_dir",
+        "save_checkpoints": true,
+        "checkpoint_interval": 100,
+        "evaluation_interval": 50
+    }
+}

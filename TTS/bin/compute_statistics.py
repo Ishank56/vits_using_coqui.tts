@@ -1,6 +1,9 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
+import sys
+sys.path.append("D:/coqui.tts/.venv/TTS")
+
 import argparse
 import glob
 import os
