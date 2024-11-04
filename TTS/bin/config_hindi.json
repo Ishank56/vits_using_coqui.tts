@@ -15,7 +15,7 @@
     "print_eval": true,
     "mixed_precision": false,
     "max_seq_len": 500000,
-    "output_path": "D:/output2",
+    "output_path": "D:/output1",
     "test_sentences": [
         "Hello my name is ishank",
         "Mic testing 1 2 3"
@@ -34,8 +34,8 @@
         "eos": "",
         "bos": "",
         "blank": " ",
-        "characters": "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ",
-        "punctuations": ",.:;'\"!?()[]{}",
+        "characters": "अआइईउऊऍएऐऑओऔकखगघचछजझटठडढणतथदधनपफबभमयरलवशषसह़ािीुूृेैॉोौ्ज़ड़ढ़फ़।–‘’“”!",
+        "punctuations": ",.:;'‘’“”()!?ँंः।",
         "phonemes": null,
         "is_unique": true,
         "is_sorted": true

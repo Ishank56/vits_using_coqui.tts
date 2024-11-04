@@ -29,7 +29,7 @@ else:
     # Prepare the command to run TTS
     command = [
         'tts',  # Assuming 'tts' is the command for your TTS tool
-        '--text', 'hello my name is ishank goel and i am a very good student',
+        '--text', '',
         '--model_path', test_ckpt,
         '--config_path', test_config,
         '--out_path', custom_output_path
