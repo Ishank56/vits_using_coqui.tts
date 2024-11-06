@@ -1,18 +1,28 @@
+# Collab Link for training Marathi model:
+https://colab.research.google.com/drive/10T9VFTJ5uCg679Dg7IBQCIr7EQtMn_ZN?usp=sharing
+
+## Dataset used from:
+https://www.openslr.org/103/
+VCTK Format
+
 # Training_VITS_Hindi_TTS
 
 ## Introduction
 This repository contains code for training a Text-to-Speech (TTS) model specifically for Hindi language using the VITS model. The VITS model is known for its high-quality speech synthesis capabilities. 
 
 ## Installation
-To get started with training the Hindi TTS model, follow these steps:
-
-1. Install the Coqui TTS toolkit by following the instructions provided [here](https://docs.coqui.ai/en/latest/installation.html).
-
+```To get started with training the Hindi TTS model, follow these steps:
+git clone https://github.com/Ishank56/vits_using_coqui.tts.git
+pip install -e .
+```
 2. Ensure that the Hindi dataset is available inside the `Dataset` folder. The Hindi data i used can be downloaded from [here](https://www.iitm.ac.in/donlab/indictts/database). The data should be formatted in a manner similar to LJSpeech_1.1 dataset for compatibility.
 
-3. Install all required libraries for phonemizing Hindi alphabets. **Espeak** library is particularly useful for this purpose.
+Dataset I used for training here:
+https://keithito.com/LJ-Speech-Dataset/
 
-4. Adjust the parameters in the code according to your requirements. The rest of the parameters should already be updated accordingly for the Hindi dataset.
+3. Install all required libraries for phonemizing Hindi alphabets. **Espeak** library is particularly useful for this purpose.
+   For specific files config.json needs to be set accordingly while using vits model, 
+5. Adjust the parameters in the code according to your requirements. The rest of the parameters should already be updated accordingly for the Hindi dataset.
 
 ## Dataset
 The dataset provided in the `Dataset` folder contains text data and corresponding Wav files in Hindi language. It follows the same format as the LJSpeech 1.1 dataset for consistency. Ensure that the dataset is properly formatted and organized before proceeding with training.
@@ -44,4 +54,4 @@ python testing.py
 I made the project working and it is generating good synthesised output. Contributions to this project are welcome! If you have any improvements or suggestions, feel free to open an issue or submit a pull request.
 
 ## License
-This project is licensed under the [MIT License](LICENSE).
+I give credits to https://github.com/coqui-ai/TTS?tab=readme-ov-file and dataset contributors mentioned above.
